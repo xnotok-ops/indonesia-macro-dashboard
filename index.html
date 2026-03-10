@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dampak Geopolitik AS-Iran terhadap Ekonomi Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0a0f1a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 32px 16px;
+        }
+
+        .container { max-width: 640px; margin: 0 auto; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #ef4444;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: #f8fafc;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Chain Reaction Flow */
+        .flow-section {
+            margin-bottom: 40px;
+        }
+
+        .flow-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #f59e0b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .flow-step {
+            background: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            border-color: #475569;
+        }
+
+        .flow-step.active {
+            border-color: var(--step-color);
+        }
+
+        .flow-step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .flow-step-icon { font-size: 28px; }
+
+        .flow-step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .flow-step-subtitle {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        .flow-step-detail {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #334155;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .flow-step.active .flow-step-detail {
+            display: block;
+        }
+
+        .flow-connector {
+            text-align: center;
+            padding: 6px 0;
+            color: #475569;
+            font-size: 20px;
+        }
+
+        /* Rating Cards */
+        .rating-section { margin-bottom: 40px; }
+
+        .rating-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .rating-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+
+        .rating-agency {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .rating-before {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #22c55e;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .rating-arrow {
+            font-size: 18px;
+            color: #ef4444;
+            margin: 4px 0;
+        }
+
+        .rating-after {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ef4444;
+        }
+
+        .rating-label {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        /* Stat Bars */
+        .stat-section { margin-bottom: 40px; }
+
+        .stat-bar {
+            margin-bottom: 16px;
+        }
+
+        .stat-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .stat-bar-label {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .stat-bar-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .stat-bar-track {
+            background: #1e293b;
+            border-radius: 6px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.8s ease;
+        }
+
+        /* Oil Import */
+        .oil-section { margin-bottom: 40px; }
+
+        .oil-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .oil-flag { font-size: 24px; }
+
+        .oil-name {
+            flex: 1;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        .oil-pct {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .oil-bar-track {
+            width: 100px;
+            background: #1e293b;
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .oil-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Impact Stats */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .impact-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+
+        .impact-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .impact-label {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #475569;
+            line-height: 1.5;
+            margin-top: 32px;
+        }
+
+        .footer a {
+            color: #f59e0b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="tag">Infografis Makroekonomi</div>
+            <h1>🇮🇩 Dampak Konflik AS-Iran terhadap Ekonomi Indonesia</h1>
+            <p>Bagaimana ketegangan geopolitik di Timur Tengah berdampak ke rupiah, credit rating, dan impor minyak Indonesia</p>
+        </div>
+
+        <!-- Impact Stats -->
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-value" style="color: #ef4444;">16,800+</div>
+                <div class="impact-label">IDR/USD Tertinggi</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value" style="color: #f59e0b;">2</div>
+                <div class="impact-label">Agency Downgrade</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value" style="color: #3b82f6;">80%+</div>
+                <div class="impact-label">Import Minyak</div>
+            </div>
+        </div>
+
+        <!-- Chain Reaction -->
+        <div class="flow-section">
+            <div class="flow-title">Rantai Dampak Ekonomi</div>
+
+            <div class="flow-step" style="--step-color: #ef4444;" onclick="toggleStep(this)">
+                <div class="flow-step-header">
+                    <div class="flow-step-icon">⚔️</div>
+                    <div>
+                        <div class="flow-step-title">Konflik AS-Iran Memanas</div>
+                        <div class="flow-step-subtitle">Ketegangan geopolitik Timur Tengah</div>
+                    </div>
+                </div>
+                <div class="flow-step-detail">
+                    Ancaman perang dan sanksi antara AS dan Iran mengguncang pasar global. Investor kabur dari aset berisiko (risk-off), harga minyak melonjak karena ketakutan gangguan supply dari Selat Hormuz — jalur 20% minyak dunia.
+                </div>
+            </div>
+
+            <div class="flow-connector">↓</div>
+
+            <div class="flow-step" style="--step-color: #f59e0b;" onclick="toggleStep(this)">
+                <div class="flow-step-header">
+                    <div class="flow-step-icon">🛢️</div>
+                    <div>
+                        <div class="flow-step-title">Harga Minyak Naik</div>
+                        <div class="flow-step-subtitle">Indonesia net importer minyak mentah</div>
+                    </div>
+                </div>
+                <div class="flow-step-detail">
+                    Indonesia mengimpor 80%+ kebutuhan minyak mentahnya. Kenaikan harga minyak dunia langsung menambah beban current account deficit. Subsidi BBM membengkak, tekanan ke APBN meningkat.
+                </div>
+            </div>
+
+            <div class="flow-connector">↓</div>
+
+            <div class="flow-step" style="--step-color: #3b82f6;" onclick="toggleStep(this)">
+                <div class="flow-step-header">
+                    <div class="flow-step-icon">💱</div>
+                    <div>
+                        <div class="flow-step-title">Rupiah Melemah</div>
+                        <div class="flow-step-subtitle">Capital outflow + current account deficit</div>
+                    </div>
+                </div>
+                <div class="flow-step-detail">
+                    Kombinasi capital flight (investor asing keluar) dan current account deficit yang membesar menekan rupiah. BI terpaksa intervensi pasar dan menaikkan suku bunga untuk menahan pelemahan, tapi ini mengorbankan pertumbuhan ekonomi.
+                </div>
+            </div>
+
+            <div class="flow-connector">↓</div>
+
+            <div class="flow-step" style="--step-color: #8b5cf6;" onclick="toggleStep(this)">
+                <div class="flow-step-header">
+                    <div class="flow-step-icon">📉</div>
+                    <div>
+                        <div class="flow-step-title">Credit Outlook Downgrade</div>
+                        <div class="flow-step-subtitle">Fitch & Moody's revisi outlook Indonesia</div>
+                    </div>
+                </div>
+                <div class="flow-step-detail">
+                    Fitch dan Moody's menurunkan outlook Indonesia karena: melemahnya rupiah, tekanan fiskal dari subsidi BBM, perlambatan pertumbuhan, dan ketidakpastian geopolitik. Downgrade ini membuat cost of borrowing Indonesia naik dan investor asing makin ragu.
+                </div>
+            </div>
+        </div>
+
+        <!-- Credit Rating Comparison -->
+        <div class="rating-section">
+            <div class="flow-title">Perbandingan Credit Outlook</div>
+            <div class="rating-grid">
+                <div class="rating-card">
+                    <div class="rating-agency">FITCH</div>
+                    <div class="rating-before">Stable</div>
+                    <div class="rating-arrow">↓</div>
+                    <div class="rating-after">Negative</div>
+                    <div class="rating-label">BBB outlook</div>
+                </div>
+                <div class="rating-card">
+                    <div class="rating-agency">MOODY'S</div>
+                    <div class="rating-before">Stable</div>
+                    <div class="rating-arrow">↓</div>
+                    <div class="rating-after">Negative</div>
+                    <div class="rating-label">Baa2 outlook</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Oil Import Sources -->
+        <div class="oil-section">
+            <div class="flow-title">Sumber Impor Minyak Indonesia</div>
+
+            <div class="oil-item">
+                <div class="oil-flag">🇸🇦</div>
+                <div class="oil-name">Arab Saudi</div>
+                <div class="oil-pct" style="color: #ef4444;">28%</div>
+                <div class="oil-bar-track">
+                    <div class="oil-bar-fill" style="width: 28%; background: #ef4444;"></div>
+                </div>
+            </div>
+
+            <div class="oil-item">
+                <div class="oil-flag">🇮🇶</div>
+                <div class="oil-name">Irak</div>
+                <div class="oil-pct" style="color: #f59e0b;">18%</div>
+                <div class="oil-bar-track">
+                    <div class="oil-bar-fill" style="width: 18%; background: #f59e0b;"></div>
+                </div>
+            </div>
+
+            <div class="oil-item">
+                <div class="oil-flag">🇳🇬</div>
+                <div class="oil-name">Nigeria</div>
+                <div class="oil-pct" style="color: #22c55e;">14%</div>
+                <div class="oil-bar-track">
+                    <div class="oil-bar-fill" style="width: 14%; background: #22c55e;"></div>
+                </div>
+            </div>
+
+            <div class="oil-item">
+                <div class="oil-flag">🇦🇪</div>
+                <div class="oil-name">UAE</div>
+                <div class="oil-pct" style="color: #3b82f6;">12%</div>
+                <div class="oil-bar-track">
+                    <div class="oil-bar-fill" style="width: 12%; background: #3b82f6;"></div>
+                </div>
+            </div>
+
+            <div class="oil-item">
+                <div class="oil-flag">🌍</div>
+                <div class="oil-name">Lainnya</div>
+                <div class="oil-pct" style="color: #8b5cf6;">28%</div>
+                <div class="oil-bar-track">
+                    <div class="oil-bar-fill" style="width: 28%; background: #8b5cf6;"></div>
+                </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; margin-top: 12px; text-align: center;">
+                ⚠️ 46%+ impor minyak Indonesia berasal dari kawasan Timur Tengah yang terdampak langsung konflik
+            </p>
+        </div>
+
+        <!-- Rupiah Impact -->
+        <div class="stat-section">
+            <div class="flow-title">Tekanan Terhadap Rupiah</div>
+
+            <div class="stat-bar">
+                <div class="stat-bar-header">
+                    <span class="stat-bar-label">Capital Outflow Asing (obligasi)</span>
+                    <span class="stat-bar-value" style="color: #ef4444;">-Rp 42.3T</span>
+                </div>
+                <div class="stat-bar-track">
+                    <div class="stat-bar-fill" style="width: 75%; background: linear-gradient(90deg, #ef4444, #ef444488);"></div>
+                </div>
+            </div>
+
+            <div class="stat-bar">
+                <div class="stat-bar-header">
+                    <span class="stat-bar-label">Cadangan Devisa (intervensi BI)</span>
+                    <span class="stat-bar-value" style="color: #f59e0b;">-$8.2B</span>
+                </div>
+                <div class="stat-bar-track">
+                    <div class="stat-bar-fill" style="width: 55%; background: linear-gradient(90deg, #f59e0b, #f59e0b88);"></div>
+                </div>
+            </div>
+
+            <div class="stat-bar">
+                <div class="stat-bar-header">
+                    <span class="stat-bar-label">Subsidi BBM Tambahan</span>
+                    <span class="stat-bar-value" style="color: #3b82f6;">+Rp 28T</span>
+                </div>
+                <div class="stat-bar-track">
+                    <div class="stat-bar-fill" style="width: 45%; background: linear-gradient(90deg, #3b82f6, #3b82f688);"></div>
+                </div>
+            </div>
+
+            <div class="stat-bar">
+                <div class="stat-bar-header">
+                    <span class="stat-bar-label">Pelemahan Rupiah YTD</span>
+                    <span class="stat-bar-value" style="color: #8b5cf6;">-6.8%</span>
+                </div>
+                <div class="stat-bar-track">
+                    <div class="stat-bar-fill" style="width: 68%; background: linear-gradient(90deg, #8b5cf6, #8b5cf688);"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div style="background: linear-gradient(135deg, #ef444422, #f59e0b22); border-radius: 16px; padding: 24px; border: 1px solid #ef444444; margin-bottom: 32px;">
+            <div style="font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; color: #f8fafc; margin-bottom: 12px; text-align: center;">
+                💡 Kesimpulan
+            </div>
+            <div style="font-size: 13px; color: #cbd5e1; line-height: 1.8;">
+                Indonesia sangat rentan terhadap gejolak geopolitik Timur Tengah karena ketergantungan tinggi pada impor minyak. Rantai dampaknya: <strong style="color: #ef4444;">konflik</strong> → <strong style="color: #f59e0b;">harga minyak naik</strong> → <strong style="color: #3b82f6;">rupiah melemah</strong> → <strong style="color: #8b5cf6;">credit outlook turun</strong>. Diversifikasi sumber energi bukan lagi opsi — tapi keharusan.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Data dari Bank Indonesia, BPS, Fitch Ratings, Moody's, EIA/OPEC.<br>
+            Built by <a href="https://x.com/xnotok" target="_blank">@xnotok</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleStep(el) {
+            const wasActive = el.classList.contains('active');
+            document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+            if (!wasActive) el.classList.add('active');
+        }
+    </script>
+</body>
+</html>
